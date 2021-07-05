@@ -1,0 +1,12 @@
+{
+  "home": {
+    "listen": "Ecoutez de la bonne musique!"
+  },
+  "manage": {
+    "my_songs": "Mes Chansons"
+  },
+  "register": {
+    "TOS": "",
+    "accept": ""
+  }
+}

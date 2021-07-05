@@ -1,0 +1,32 @@
+import { createApp } from 'vue';
+import i18n from '@/includes/i18n';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import VeeValidatePlugin from './includes/validation';
+import { auth } from './includes/firebase';
+import Icon from './directives/icon';
+import './assets/tailwind.css';
+import './assets/main.css';
+import './registerServiceWorker';
+import GlobalComponents from './includes/_globals';
+import ProgressBar from './includes/progressBar';
+import 'nprogress/nprogress.css';
+
+ProgressBar(router);
+
+let app;
+
+auth.onAuthStateChanged(() => {
+  if (!app) {
+    app = createApp(App).use(i18n);
+
+    app.use(store);
+    app.use(router);
+    app.use(VeeValidatePlugin);
+    app.use(GlobalComponents);
+    app.directive('icon', Icon);
+
+    app.mount('#app');
+  }
+});
